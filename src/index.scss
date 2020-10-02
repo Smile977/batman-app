@@ -13,3 +13,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.search {
+  width: 350px;
+  outline:none;
+}
+
+.cardList__title {
+  margin: 20px 30px;
+}
+
+.wrap {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .child {
+    flex: 0 0 17%;
+    align-items: center;
+    margin: 1rem 1rem;
+  }
+}
+
+.card {
+  width: 17rem;
+}

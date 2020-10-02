@@ -1,10 +1,19 @@
 import React from 'react';
+import {Header} from './components/Header';
+import {Main} from './components/Main';
+import {CardList} from './components/Cards/CardList';
+import {MovieState} from './context/movie/MovieState';
 
 function App() {
   return (
-    <div className="container">
-      <h1>Hello world!</h1>
-    </div>
+    <MovieState>
+      <div className="container">
+        <Header/>
+        <Main>
+          <CardList/>
+        </Main>
+      </div>
+    </MovieState>
   );
 }
 
