@@ -14,9 +14,24 @@ code {
     monospace;
 }
 
-.search {
-  width: 350px;
-  outline:none;
+.header {
+  .search {
+    width: 30rem;
+    outline:none;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .header {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .search {
+      width: 15rem;
+      outline:none;
+    }
+  }
 }
 
 .cardList__title {
@@ -34,11 +49,87 @@ code {
     align-items: center;
     margin: 1rem 1rem;
   }
+
+  .card {
+    width: 17rem;
+  }
+}
+@include media-breakpoint-down(lg) {
+  .wrap {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .child {
+      flex: 0 0 21%;
+      align-items: center;
+      margin: 1rem 1rem;
+    }
+
+    .card {
+      width: 20rem;
+    }
+  }
 }
 
-.card {
-  width: 17rem;
+@include media-breakpoint-down(md) {
+  .wrap {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .child {
+      flex: 0 0 28%;
+      align-items: center;
+      margin: 1rem 0.7rem;
+    }
+
+    .card {
+      width: 35rem;
+    }
+  }
 }
+
+@include media-breakpoint-down(sm) {
+  .wrap {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .child {
+      flex: 0 0 43%;
+      align-items: center;
+      margin: 1rem 1rem;
+    }
+
+    .card {
+      width: 35rem;
+    }
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  .wrap {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .child {
+      flex: 0 0 80%;
+      align-items: center;
+      margin: 1rem 1rem;
+    }
+
+    .card {
+      width: 50rem;
+    }
+  }
+}
+
 
 
 .wrap-spinner {

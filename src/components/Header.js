@@ -5,7 +5,7 @@ import {MainTitle} from './MatinTitle';
 
 export const Header = () => {
   return (
-      <header className="form-inline justify-content-around badge-info">
+      <header className="form-inline justify-content-around badge-info header">
         <MainTitle />
 
         <Search />
