@@ -2,12 +2,13 @@ import React, {useContext} from 'react';
 import {Card} from './Card';
 import {MovieContext} from '../../context/movie/movieContext';
 import {Loader} from '../Loader';
+import {Paginator} from "../Paginator";
 
 export const CardList = () => {
   const movie = useContext(MovieContext);
   const {cards, totalResults, loading, searchValue, setCurrentPage} = movie;
 
-  console.log('setCurrentPage =', setCurrentPage);
+  // console.log('cards =', cards);
 
   return (
     <React.Fragment>
@@ -34,7 +35,14 @@ export const CardList = () => {
                 )
               })}
             </div>
-          <button onClick={() => setCurrentPage(searchValue, 2)}>page 2</button>
+            {cards.length !== 0
+              ? <Paginator
+                  totalResults={totalResults}
+                  setCurrentPage={setCurrentPage}
+                  searchValue={searchValue}
+                />
+              : null}
+          {/*<button onClick={() => setCurrentPage(searchValue, 39)}>page 2</button>*/}
           </React.Fragment>
 
       }
