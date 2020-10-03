@@ -7,14 +7,14 @@ import {
 
 const handlers = {
   [SEARCH_CARDS]: (state, {payload}) => {
-    // console.log('payload.Search = ', payload.Search);
-    // console.log('payload.totalResults = ', payload.totalResults);
     return (
       {
         ...state,
-        cards: payload.Search,
-        totalResults: payload.totalResults,
-        loading: false}
+        cards: payload.data.Search,
+        totalResults: payload.data.totalResults,
+        loading: false,
+        searchValue: payload.searchValue,
+      }
     )
   },
   [SET_LOADING]: (state) => ({...state, loading: true}),

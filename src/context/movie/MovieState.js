@@ -2,14 +2,15 @@ import React, {useReducer} from 'react';
 import axios from 'axios';
 import {MovieContext} from './movieContext';
 import {movieReducer} from './movieReducer';
-import {CLEAR_CARDS, CLEAR_TOTAL_RESULT, SEARCH_CARDS, SET_LOADING} from "../types";
+import {CLEAR_CARDS, CLEAR_TOTAL_RESULT, SEARCH_CARDS, SET_LOADING} from '../types';
 
 export const MovieState = ({children}) => {
 
   const initialState = {
     cards: [],
     totalResults: '',
-    loading: false
+    loading: false,
+    searchValue: '',
   }
 
   const [state, dispatch] = useReducer(movieReducer, initialState);
@@ -22,13 +23,12 @@ export const MovieState = ({children}) => {
       `https://www.omdbapi.com/?i=tt3896198&apikey=8523cbb8&s=${value}`
     );
 
-    // console.log('response = ', response.data);
-    // console.log('response.data.totalResults = ', response.data.totalResults);
-
-
     dispatch({
       type: SEARCH_CARDS,
-      payload: response.data
+      payload: {
+        data: response.data,
+        searchValue: value,
+      }
     })
   }}
 
@@ -36,11 +36,11 @@ export const MovieState = ({children}) => {
   const clearTotalResults = () => dispatch({type: CLEAR_TOTAL_RESULT});
   const setLoading = () => dispatch({type: SET_LOADING});
 
-  const {cards, totalResults, loading} = state;
+  const {cards, totalResults, loading, searchValue} = state;
 
   return (
     <MovieContext.Provider value={{
-      search, setLoading, clearCards, clearTotalResults ,cards, totalResults, loading,
+      search, setLoading, clearCards, clearTotalResults ,cards, totalResults, loading, searchValue
     }}>
       {children}
     </MovieContext.Provider>
