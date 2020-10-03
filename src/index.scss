@@ -220,6 +220,19 @@ code {
 .paginator {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
+
+  .paginator-item, .paginator-item-active {
+    width: 2rem;
+    height: 1.8rem;
+    margin-right: 0.5rem;
+    border-radius: 0.3rem;
+  }
+
+  .paginator-item-active {
+    background-color: #17a2b8;
+    color: #fff;
+  }
 }
 
 

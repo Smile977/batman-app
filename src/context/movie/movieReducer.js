@@ -19,12 +19,13 @@ const handlers = {
     )
   },
   [SET_CURRENT_PAGE]: (state, {payload}) => {
+    console.log('payload.currentPage ===', payload.currentPage)
     return (
       {
         ...state,
         cards: payload.data.Search,
         loading: false,
-        pageNumber: payload.pageNumber
+        currentPage: payload.currentPage
       }
     )
   },

@@ -1,14 +1,26 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect, useReducer} from 'react';
 import {Card} from './Card';
 import {MovieContext} from '../../context/movie/movieContext';
 import {Loader} from '../Loader';
-import {Paginator} from "../Paginator";
+import {Paginator} from '../Paginator';
+import {movieReducer} from '../../context/movie/movieReducer';
+
 
 export const CardList = () => {
-  const movie = useContext(MovieContext);
-  const {cards, totalResults, loading, searchValue, setCurrentPage} = movie;
 
-  // console.log('cards =', cards);
+  const [state, dispatch] = useReducer(movieReducer);
+
+  const movie = useContext(MovieContext);
+  const {cards, totalResults, loading, searchValue, setCurrentPage, currentPage} = movie;
+
+
+  // useEffect(() => {
+  //   dispatch(setCurrentPage(searchValue, currentPage));
+  // }, [dispatch, currentPage]);
+
+  const getPageNumber = (event) => {
+    setCurrentPage(searchValue, event.target.id);
+  }
 
   return (
     <React.Fragment>
@@ -40,9 +52,10 @@ export const CardList = () => {
                   totalResults={totalResults}
                   setCurrentPage={setCurrentPage}
                   searchValue={searchValue}
+                  currentPage={currentPage}
+                  getPageNumber={getPageNumber}
                 />
               : null}
-          {/*<button onClick={() => setCurrentPage(searchValue, 39)}>page 2</button>*/}
           </React.Fragment>
 
       }

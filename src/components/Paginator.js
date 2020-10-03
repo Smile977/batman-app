@@ -1,20 +1,38 @@
-import React from 'react';
+import React, {useEffect, useReducer} from 'react';
+import {createPages} from '../UI/createPages';
+import {movieReducer} from '../context/movie/movieReducer';
 
-export const Paginator = ({totalResults, setCurrentPage, searchValue}) => {
-  const pages = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+export const Paginator = ({totalResults, setCurrentPage, searchValue, currentPage, getPageNumber}) => {
 
-  const getPageNumber = (event) => {
-    console.log('event.target', event.target.id);
-    setCurrentPage(searchValue, event.target.id);
-  }
+  const pages = [];
+  const pagesCount = Math.ceil(totalResults / 10);
+
+  currentPage = +currentPage
+  // console.log('currentPage = ', typeof currentPage);
+
+  // useEffect(() => {
+  //   dispatch(setCurrentPage(searchValue, currentPage));
+  // }, [dispatch, currentPage]);
+
+  console.log('pages =', pages)
+
+  createPages(pages, pagesCount, currentPage);
+
+  // const getPageNumber = (event) => {
+  //   setCurrentPage(searchValue, event.target.id);
+  // }
 
   const renderButtons = () => {
     return pages.map((page, index) => {
+      console.log('page =', page, 'currentPage =', currentPage, 'index =', index);
+
       return (
         <button
+          className={currentPage == page ? "paginator-item-active" : "paginator-item"}
           id={index + 1}
+          key={index}
           onClick={getPageNumber}
-        >{index + 1}</button>
+        >{page}</button>
       )
     })
   }

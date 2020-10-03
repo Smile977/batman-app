@@ -11,16 +11,17 @@ export const MovieState = ({children}) => {
     totalResults: '',
     loading: false,
     searchValue: '',
-    pageNumber: 1,
+    currentPage: 1,
   }
 
   const [state, dispatch] = useReducer(movieReducer, initialState);
 
-  const setCurrentPage = async (value, pageNumber) => {
+  const setCurrentPage = async (value, currentPage) => {
+    console.log('currentPage ===', currentPage)
     setLoading();
 
     const response = await axios.get(
-      `https://www.omdbapi.com/?i=tt3896198&apikey=8523cbb8&s=${value}&page=${pageNumber}`
+      `https://www.omdbapi.com/?i=tt3896198&apikey=8523cbb8&s=${value}&page=${currentPage}`
     );
 
     console.log('response = ', response.data.Search);
@@ -29,16 +30,14 @@ export const MovieState = ({children}) => {
       type: SET_CURRENT_PAGE,
       payload: {
         data: response.data,
-        pageNumber: pageNumber
+        currentPage: currentPage
       }
     })
   }
 
-
   const search = async (value) => {{
     setLoading();
 
-    // `https://www.omdbapi.com/?i=tt3896198&apikey=8523cbb8&s=${value}&page=1`
     const response = await axios.get(
       `https://www.omdbapi.com/?i=tt3896198&apikey=8523cbb8&s=${value}`
     );
@@ -56,12 +55,12 @@ export const MovieState = ({children}) => {
   const clearTotalResults = () => dispatch({type: CLEAR_TOTAL_RESULT});
   const setLoading = () => dispatch({type: SET_LOADING});
 
-  const {cards, totalResults, loading, searchValue} = state;
+  const {cards, totalResults, loading, searchValue, currentPage} = state;
 
   return (
     <MovieContext.Provider value={{
       search, setLoading, clearCards, clearTotalResults, setCurrentPage,
-      cards, totalResults, loading, searchValue
+      cards, totalResults, loading, searchValue, currentPage
     }}>
       {children}
     </MovieContext.Provider>
