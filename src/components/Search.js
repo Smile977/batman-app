@@ -15,7 +15,7 @@ export const Search = () => {
     if (value.trim()) {
       movie.search(value.trim());
     } else {
-      throw new Error('Something go wrong!');
+      console.log('Something go wrong!');
     }
   }
 

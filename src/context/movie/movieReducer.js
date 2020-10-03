@@ -2,7 +2,8 @@ import {
   CLEAR_CARDS,
   CLEAR_TOTAL_RESULT,
   SEARCH_CARDS,
-  SET_LOADING
+  SET_LOADING,
+  SET_CURRENT_PAGE
 } from '../types';
 
 const handlers = {
@@ -14,6 +15,16 @@ const handlers = {
         totalResults: payload.data.totalResults,
         loading: false,
         searchValue: payload.searchValue,
+      }
+    )
+  },
+  [SET_CURRENT_PAGE]: (state, {payload}) => {
+    return (
+      {
+        ...state,
+        cards: payload.data.Search,
+        loading: false,
+        pageNumber: payload.pageNumber
       }
     )
   },
