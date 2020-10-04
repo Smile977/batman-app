@@ -17,14 +17,11 @@ export const MovieState = ({children}) => {
   const [state, dispatch] = useReducer(movieReducer, initialState);
 
   const setCurrentPage = async (value, currentPage) => {
-    console.log('currentPage ===', currentPage)
     setLoading();
 
     const response = await axios.get(
       `https://www.omdbapi.com/?i=tt3896198&apikey=8523cbb8&s=${value}&page=${currentPage}`
     );
-
-    console.log('response = ', response.data.Search);
 
     dispatch({
       type: SET_CURRENT_PAGE,

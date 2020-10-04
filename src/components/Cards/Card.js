@@ -1,7 +1,12 @@
 import React from 'react';
 
 export const Card = ({ card }) => {
-  const { Title, Poster, Year, imdbID, Type } = card;
+  const noImageUrl = 'https://www.supersizefashion.com/assets/image/sample.jpg';
+  let { Title, Poster, Year, imdbID, Type } = card;
+
+  if (Poster === "N/A") {
+    Poster = noImageUrl;
+  }
 
   return (
     <div className="card child">

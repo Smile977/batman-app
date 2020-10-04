@@ -3,7 +3,7 @@ import {
   CLEAR_TOTAL_RESULT,
   SEARCH_CARDS,
   SET_LOADING,
-  SET_CURRENT_PAGE
+  SET_CURRENT_PAGE,
 } from '../types';
 
 const handlers = {
@@ -15,11 +15,11 @@ const handlers = {
         totalResults: payload.data.totalResults,
         loading: false,
         searchValue: payload.searchValue,
+        currentPage: 1
       }
     )
   },
   [SET_CURRENT_PAGE]: (state, {payload}) => {
-    console.log('payload.currentPage ===', payload.currentPage)
     return (
       {
         ...state,
