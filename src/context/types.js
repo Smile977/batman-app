@@ -1,0 +1,5 @@
+export const CLEAR_CARDS = 'CLEAR_CARDS';
+export const CLEAR_TOTAL_RESULT = 'CLEAR_TOTAL_RESULT';
+export const SEARCH_CARDS = 'SEARCH_CARDS';
+export const SET_LOADING = 'SET_LOADING';
+export const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
